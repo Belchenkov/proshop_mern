@@ -1,3 +1,7 @@
+* {
+    font-family: "Nunito Sans", sans-serif;
+}
+
 main {
     min-height: 80vh;
 }
