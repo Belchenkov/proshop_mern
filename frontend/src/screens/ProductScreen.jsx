@@ -7,13 +7,23 @@ import {
 	Card,
 	Button,
 } from "react-bootstrap";
+import { useEffect, useState } from "react";
+import axios    from "axios";
 
-import products from "../products";
 import Rating   from "../components/Rating";
 
 const ProductScreen = () => {
+	const [product, setProduct] = useState({});
 	const { id: productId } = useParams();
-	const product = products.find(p => p._id === +productId);
+
+	useEffect(() => {
+		const fetchProduct = async () => {
+			const { data } = await axios.get(`/api/product/${productId}`);
+			setProduct(data);
+		};
+
+		fetchProduct().then();
+	}, [productId]);
 
 	const addToCartHandler = () => {
 		console.log('addToCartHandler');
